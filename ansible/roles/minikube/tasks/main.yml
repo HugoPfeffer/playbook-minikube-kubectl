@@ -1,0 +1,12 @@
+---
+- name: 'Install conntrack'
+  dnf:
+    name: conntrack
+    state: latest
+  become: yes
+- name: 'Install Minikube'
+  get_url:
+    url: https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+    dest: /home/vagrant/minikube
+    mode: -x
+  become: yes

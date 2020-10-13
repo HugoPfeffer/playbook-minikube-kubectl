@@ -1,0 +1,26 @@
+---
+######## DOCKER INSTALL ######## 
+- name: 'Add packages' 
+  yum: 
+    name: 'yum-utils'
+    state: latest
+  become: yes
+
+- name: Add Docker repo
+  get_url:
+    url: https://download.docker.com/linux/centos/docker-ce.repo
+    dest: /etc/yum.repos.d/docer-ce.repo
+  become: yes
+
+- name: 'Installs docker' 
+  yum: 
+    name: ['docker-ce', 'docker-ce-cli', 'containerd.io']
+    state: latest
+  become: yes
+
+- name: 'Start docker service'
+  service: 
+    name: docker
+    state: started
+  become: yes
+
